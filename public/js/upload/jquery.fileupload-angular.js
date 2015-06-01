@@ -13,6 +13,7 @@
 /* global define, angular */
 // sua tu may mac
 //sua tu pc
+//sua tu mac 1
 (function (factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
