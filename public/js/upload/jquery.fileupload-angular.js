@@ -29,7 +29,6 @@
     }
 }(function () {
     'use strict';
-
     angular.module('blueimp.fileupload', [])
 
         // The fileUpload service provides configuration options
