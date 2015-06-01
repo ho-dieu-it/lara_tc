@@ -29,8 +29,8 @@
     }
 }(function () {
     'use strict';
-
     angular.module('blueimp.fileupload', [])
+
         // The fileUpload service provides configuration options
         // for the fileUpload directive and default handlers for
         // File Upload events:
@@ -426,3 +426,4 @@
         });
 
 }));
+>>>>>>> 394bdea747a43b7ac460c6ac95b46b5f321f9ff6
