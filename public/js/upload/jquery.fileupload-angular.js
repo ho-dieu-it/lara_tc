@@ -11,7 +11,7 @@
 //sua tu pc
 /* jshint nomen:false */
 /* global define, angular */
-
+// sua tu may mac
 (function (factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
@@ -426,3 +426,4 @@
         });
 
 }));
+
