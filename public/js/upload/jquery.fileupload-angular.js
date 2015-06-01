@@ -31,7 +31,6 @@
     'use strict';
 
     angular.module('blueimp.fileupload', [])
-
         // The fileUpload service provides configuration options
         // for the fileUpload directive and default handlers for
         // File Upload events:
