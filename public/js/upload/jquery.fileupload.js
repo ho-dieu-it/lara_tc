@@ -217,6 +217,7 @@
                     data.process().done(function () {
                         data.submit();
                     });
+                    
                 }
             },
 
@@ -968,6 +969,7 @@
         },
 
         _onAdd: function (e, data) {
+        	console.log('_onAdd');
             var that = this,
                 result = true,
                 options = $.extend({}, this.options, data),
@@ -1171,7 +1173,9 @@
             if (entries && entries.length) {
                 return this._handleFileTreeEntries(entries);
             }
+            console.log(fileInput.prop('files'));
             files = $.makeArray(fileInput.prop('files'));
+            console.log(files);
             if (!files.length) {
                 value = fileInput.prop('value');
                 if (!value) {
@@ -1206,7 +1210,8 @@
             });
         },
 
-        _onChange: function (e) {
+        _onChange: function (e) { 
+        	console.log('_onChange');
             var that = this,
                 data = {
                     fileInput: $(e.target),

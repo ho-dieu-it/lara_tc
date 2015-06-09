@@ -54,6 +54,7 @@
             };
             if (!isOnGitHub) {
                 $scope.loadingFiles = true;
+                
                 $http.get(url)
                     .then(
                         function (response) {
@@ -70,6 +71,7 @@
     .controller('FileDestroyController', [
         '$scope', '$http',
         function ($scope, $http) {
+        	
             var file = $scope.file,
                 state;
             if (file.url) {
@@ -85,6 +87,7 @@
                         function () {
                             state = 'resolved';
                             $scope.clear(file);
+                            // xu ly delete file tai day
                         },
                         function () {
                             state = 'rejected';

@@ -11,9 +11,7 @@
 
 /* jshint nomen:false */
 /* global define, angular */
-// sua tu may mac
-//sua tu pc
-//sua tu mac 1
+
 (function (factory) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
@@ -40,6 +38,7 @@
             var scopeEvalAsync = function (expression) {
                     var scope = angular.element(this)
                             .fileupload('option', 'scope');
+                    
                     // Schedule a new $digest cycle if not already inside of one
                     // and evaluate the given expression:
                     scope.$evalAsync(expression);
@@ -64,6 +63,7 @@
                     });
                     file.$submit = function () {
                         if (!file.error) {
+                        	//xu ly save file tai day
                             return data.submit();
                         }
                     };
