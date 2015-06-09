@@ -73,8 +73,8 @@
 		<!--AngularJS-->
 		
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"></script>
-	 <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js" type="text/javascript"></script>
-	 <script src="http://m-e-conroy.github.io/angular-dialog-service/javascripts/dialogs.min.js" type="text/javascript"></script>
+	<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js" type="text/javascript"></script>
+	<script src="http://m-e-conroy.github.io/angular-dialog-service/javascripts/dialogs.min.js" type="text/javascript"></script>
 <!-- 	<script src="{{ asset('/js/app.js') }}"></script> -->
 	<!-- Upload File -->
 	<script src="{{ asset('/js/upload/vendor/jquery.ui.widget.js') }}"></script>
@@ -87,7 +87,7 @@
 	<!-- blueimp Gallery script -->
 	<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 	<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-	<script src="{{ asset('/js/upload/jquery.iframe-transport.js') }}"></script>
+<!-- 	<script src="{{ asset('/js/upload/jquery.iframe-transport.js') }}"></script> -->
 	<!-- The basic File Upload plugin -->
 	<script src="{{ asset('/js/upload/jquery.fileupload.js') }}"></script>
 	<!-- The File Upload processing plugin -->
