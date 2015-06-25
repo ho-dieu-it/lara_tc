@@ -23,7 +23,6 @@ class ProductController extends  Controller{
 	}
 	public function getCreate(){
 		$categories=Category::getCategories();	
-		var_dump($categories);
 		return View::make('admin/product/create')->with(array('categories'=>$categories));
 	}
 	public function postCreate(Request $request){
@@ -80,29 +79,12 @@ class ProductController extends  Controller{
 		return redirect('admin/product/edit');
 	
 	}
-	public function getEdit(){
+	public function getEdit($id){
 		$categories=Category::getCategories();	
-		return View::make('admin/product/create')->with(array('categories'=>$categories));
+		$category=Category::find(20);
+		return View::make('admin/product/edit')->with(array('categories'=>$categories,'category'=>$category));
 	}
-	public function postEdit(Request $request){
-		$this->validate($request, ['name'=>'required'],['required'=>'Please input category name.']);
-		$id=$request->input('id');
-		$name=$request->input('name');
-		$description=$request->input('description');
-		$parent_id=$request->input('parent');
-		$category=array(
-				'id'=>$id,
-				'name'=>$name,
-				'description'=>$description,
-				'parent_id'=>$parent_id
-		);
-		//mytable::editData($category);
-		if(Category::moveCategoryToNewParent($category)){
-			return redirect('admin/category');
-		}
-		return redirect('admin/category/edit/'.$id);
 	
-	}
 	public function getDelete($id){
 		if(empty($id)){
 			return Response::json('fail');
