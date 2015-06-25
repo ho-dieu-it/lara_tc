@@ -13,6 +13,8 @@
 	<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
 	<link rel="stylesheet" href="{{asset('/css/upload/jquery.fileupload.css')}}">
 	<link rel="stylesheet" href="{{asset('/css/upload/jquery.fileupload-ui.css')}}">
+	<!-- blueimp Gallery styles -->
+<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 	<!-- CSS adjustments for browsers with JavaScript disabled -->
 	<noscript><link rel="stylesheet" href="{{asset('/css/upload/jquery.fileupload-noscript.css')}}"></noscript>
 	<noscript><link rel="stylesheet" href="{{asset('/css/upload/jquery.fileupload-ui-noscript.css')}}"></noscript>
@@ -65,6 +67,7 @@
 	<div class="container">
 	@yield('content')
 	</div>
+	
 	<!-- Scripts -->
 <!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
 <!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script> -->

@@ -42,6 +42,7 @@
                     // Schedule a new $digest cycle if not already inside of one
                     // and evaluate the given expression:
                     scope.$evalAsync(expression);
+                    
                 },
                 addFileMethods = function (scope, data) {
                     var files = data.files,
@@ -64,6 +65,7 @@
                     file.$submit = function () {
                         if (!file.error) {
                         	//xu ly save file tai day
+                        	
                             return data.submit();
                         }
                     };
@@ -72,6 +74,7 @@
                     };
                 },
                 $config;
+                
             $config = this.defaults = {
                 handleResponse: function (e, data) {
                     var files = data.result && data.result.files;
@@ -85,6 +88,7 @@
                 },
                 add: function (e, data) {
                     if (e.isDefaultPrevented()) {
+                    	
                         return false;
                     }
                     var scope = data.scope,
@@ -93,19 +97,22 @@
                         filesCopy.push(file);
                     });
                     scope.$apply(function () {
+                    	console.log('$apply');
                         addFileMethods(scope, data);
                         var method = scope.option('prependFiles') ?
                                 'unshift' : 'push';
                         Array.prototype[method].apply(scope.queue, data.files);
                     });
                     data.process(function () {
+                    	console.log('process');
                         return scope.process(data);
                     }).always(function () {
+                    	console.log('always');
                         scope.$apply(function () {
                             addFileMethods(scope, data);
                             scope.replace(filesCopy, data.files);
                         });
-                    }).then(function () {
+                    }).then(function () {console.log('then');
                         if ((scope.option('autoUpload') ||
                                 data.autoUpload) &&
                                 data.autoUpload !== false) {
@@ -259,6 +266,7 @@
                     }
                 };
                 $scope.applyOnQueue = function (method) {
+                	
                     var list = this.queue.slice(0),
                         i,
                         file;
@@ -266,10 +274,12 @@
                         file = list[i];
                         if (file[method]) {
                             file[method]();
+                            console.log(file[method]);
                         }
                     }
                 };
                 $scope.submit = function () {
+                	//console.log('test');
                     this.applyOnQueue('$submit');
                 };
                 $scope.cancel = function () {
@@ -280,12 +290,14 @@
                 // The fileupload widget will initialize with
                 // the options provided via "data-"-parameters,
                 // as well as those given via options object:
+                
                 $element.fileupload(angular.extend(
                     {scope: $scope},
                     fileUpload.defaults
                 )).on('fileuploadadd', function (e, data) {
                     data.scope = $scope;
                 }).on('fileuploadfail', function (e, data) {
+                	console.log('on fail');
                     if (data.errorThrown === 'abort') {
                         return;
                     }

@@ -320,12 +320,15 @@
         _getFormData: function (options) {
             var formData;
             if ($.type(options.formData) === 'function') {
+            	console.log('formData is funciton');
                 return options.formData(options.form);
             }
             if ($.isArray(options.formData)) {
+            	console.log('formData is array');
                 return options.formData;
             }
             if ($.type(options.formData) === 'object') {
+            	console.log('formData is object');
                 formData = [];
                 $.each(options.formData, function (name, value) {
                     formData.push({name: name, value: value});
@@ -420,6 +423,7 @@
             // Accesss to the native XHR object is required to add event listeners
             // for the upload progress event:
             if (xhr.upload) {
+            	console.log(xhr.upload);
                 $(xhr.upload).bind('progress', function (e) {
                     var oe = e.originalEvent;
                     // Make sure the progress event properties get copied over:
@@ -455,11 +459,15 @@
                 options.headers['Content-Disposition'] = 'attachment; filename="' +
                     encodeURI(file.name) + '"';
             }
+            
+            // Don't care -------
             if (!multipart) {
+            	console.log('_initXHRData:multipart is true');
                 options.contentType = file.type || 'application/octet-stream';
                 options.data = options.blob || file;
             } else if ($.support.xhrFormDataFileUpload) {
                 if (options.postMessage) {
+                	console.log('options.postMessage is true');
                     // window.postMessage does not allow sending FormData
                     // objects, so we just add the File/Blob objects to
                     // the formData array and let the postMessage window
@@ -507,7 +515,7 @@
                     }
                 }
                 options.data = formData;
-            }
+            } // end don't care
             // Blob reference is not needed anymore, free memory:
             options.blob = null;
         },
@@ -631,6 +639,7 @@
         // Creates and returns a Promise object enhanced with
         // the jqXHR methods abort, success, error and complete:
         _getXHRPromise: function (resolveOrReject, context, args) {
+        	 
             var dfd = $.Deferred(),
                 promise = dfd.promise();
             context = context || this.options.context || promise;
@@ -719,6 +728,7 @@
         // should be uploaded in chunks, but does not invoke any
         // upload requests:
         _chunkedUpload: function (options, testOnly) {
+        	
             options.uploadedBytes = options.uploadedBytes || 0;
             var that = this,
                 file = options.files[0],
@@ -790,7 +800,7 @@
                         if (ub < fs) {
                             // File upload not yet complete,
                             // continue with the next chunk:
-                            upload();
+                            //upload();
                         } else {
                             dfd.resolveWith(
                                 o.context,
@@ -814,7 +824,7 @@
             promise.abort = function () {
                 return jqXHR.abort();
             };
-            upload();
+            //upload();
             return promise;
         },
 
@@ -884,6 +894,7 @@
 
         _onSend: function (e, data) {
             if (!data.submit) {
+            	console.log(' _onSend->!data.submit is failed');
                 this._addConvenienceMethods(e, data);
             }
             var that = this,
@@ -896,6 +907,7 @@
                     that._sending += 1;
                     // Set timer for bitrate progress calculation:
                     options._bitrateTimer = new that._BitrateTimer();
+                  
                     jqXHR = jqXHR || (
                         ((aborted || that._trigger(
                             'send',
@@ -965,11 +977,12 @@
                 };
                 return this._enhancePromise(pipe);
             }
+            
             return send();
         },
 
         _onAdd: function (e, data) {
-        	console.log('_onAdd');
+        	console.log('_onAdd add');
             var that = this,
                 result = true,
                 options = $.extend({}, this.options, data),
@@ -1171,12 +1184,14 @@
                 files,
                 value;
             if (entries && entries.length) {
+            	
                 return this._handleFileTreeEntries(entries);
             }
             console.log(fileInput.prop('files'));
             files = $.makeArray(fileInput.prop('files'));
-            console.log(files);
+            
             if (!files.length) {
+            	
                 value = fileInput.prop('value');
                 if (!value) {
                     return $.Deferred().resolve([]).promise();
@@ -1186,12 +1201,14 @@
                 // the input value as name with path information removed:
                 files = [{name: value.replace(/^.*\\/, '')}];
             } else if (files[0].name === undefined && files[0].fileName) {
+            	
                 // File normalization for Safari 4 and Firefox 3:
                 $.each(files, function (index, file) {
                     file.name = file.fileName;
                     file.size = file.fileSize;
                 });
             }
+            console.log('fileslenght');
             return $.Deferred().resolve(files).promise();
         },
 
@@ -1199,6 +1216,7 @@
             if (!(fileInput instanceof $) || fileInput.length === 1) {
                 return this._getSingleFileInputFiles(fileInput);
             }
+            console.log('_getFileInputFiles');
             return $.when.apply(
                 $,
                 $.map(fileInput, this._getSingleFileInputFiles)
@@ -1294,12 +1312,12 @@
                 });
             }
             if ($.support.fileInput) {
+            	
                 this._on(this.options.fileInput, {
                     change: this._onChange
                 });
             }
         },
-
         _destroyEventHandlers: function () {
             this._off(this.options.dropZone, 'dragenter dragleave dragover drop');
             this._off(this.options.pasteZone, 'paste');
@@ -1342,8 +1360,10 @@
         },
 
         _isRegExpOption: function (key, value) {
+        	console.log(value);
             return key !== 'url' && $.type(value) === 'string' &&
                 /^\/.*\/[igm]{0,3}$/.test(value);
+            
         },
 
         _initDataAttributes: function () {
@@ -1400,6 +1420,7 @@
         // must have a files property and can contain additional options:
         // .fileupload('add', {files: filesList});
         add: function (data) {
+        	
             var that = this;
             if (!data || this.options.disabled) {
                 return;
@@ -1413,6 +1434,7 @@
                 data.files = $.makeArray(data.files);
                 this._onAdd(null, data);
             }
+            
         },
 
         // This method is exposed to the widget API and allows sending files

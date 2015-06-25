@@ -16,7 +16,7 @@
     'use strict';
 
     var isOnGitHub = window.location.hostname === 'http://localhost:8888',
-        url = isOnGitHub ? '/admin/product/create' : '/prjlara/admin/upload/server/php/';
+        url = isOnGitHub ? '/admin/product/create' : '/prjlara/uploads/server/php/';
     
     angular.module('demo', [
         'blueimp.fileupload'

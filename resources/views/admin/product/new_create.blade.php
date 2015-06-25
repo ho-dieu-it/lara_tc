@@ -101,11 +101,12 @@
                 <div class="progress-extended">&nbsp;</div>
             </div>
         </div>
-        <!-- The table listing the files available for upload/download -->
+        <!--  table listing the files available for upload/download -->
         <table class="table table-striped files ng-cloak">
             <tr data-ng-repeat="file in queue" data-ng-class="{'processing': file.$processing()}">
                 <td data-ng-switch data-on="!!file.thumbnailUrl">
                     <div class="preview" data-ng-switch-when="true">
+                    
                         <a data-ng-href="<%file.url%>" title="<%file.name%>" download="<%file.name%>" data-gallery><img data-ng-src="<%file.thumbnailUrl%>" alt=""></a>
                     </div>
                     <div class="preview" data-ng-switch-default data-file-upload-preview="file"></div>
@@ -174,16 +175,6 @@
 			</div>
 		</div>
 	</div>
-</div>
-<!-- The blueimp Gallery widget -->
-<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
-    <div class="slides"></div>
-    <h3 class="title"></h3>
-    <a class="prev">‹</a>
-    <a class="next">›</a>
-    <a class="close">×</a>
-    <a class="play-pause"></a>
-    <ol class="indicator"></ol>
 </div>
 <script type="text/javascript">
 //$('.dropdown-toggle').dropdown();

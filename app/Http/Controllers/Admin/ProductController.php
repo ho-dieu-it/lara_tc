@@ -23,6 +23,7 @@ class ProductController extends  Controller{
 	}
 	public function getCreate(){
 		$categories=Category::getCategories();	
+		var_dump($categories);
 		return View::make('admin/product/create')->with(array('categories'=>$categories));
 	}
 	public function postCreate(Request $request){
@@ -52,10 +53,36 @@ class ProductController extends  Controller{
 		return redirect('admin/product/create');
 		
 	}
-	public function getEdit($id){
-		$categories=Category::getCategories();
-		$category=Category::getCategory($id);
-		return View::make('admin/category/edit')->with(array('categories'=>$categories,'category'=>$category));
+	public function postEdit(Request $request){
+		$this->validate($request, ['name'=>'required'],['required'=>'Please input category name.']);
+	
+		$name=$request->input('name');
+		$code=$request->input('code');
+		$summary=$request->input('summary');
+		$content=$request->input('content');
+		$price=$request->input('price');
+		$gallery_id=$request->input('gallery');
+		$visible=$request->input('gallery');
+		$cat_id=$request->input('cat_id');
+		$product=array(
+				'cat_id'=>$cat_id,
+				'name'=>$name,
+				'code'=>$code,
+				'summary'=>$summary,
+				'price'=>$price,
+				//'gallery_id'=>$parent_id,
+				'visible'=>$visible,
+	
+		);
+		// 		if(Product::createProduct($product)){
+		// 			return redirect('admin/product');
+		// 		}
+		return redirect('admin/product/edit');
+	
+	}
+	public function getEdit(){
+		$categories=Category::getCategories();	
+		return View::make('admin/product/create')->with(array('categories'=>$categories));
 	}
 	public function postEdit(Request $request){
 		$this->validate($request, ['name'=>'required'],['required'=>'Please input category name.']);
